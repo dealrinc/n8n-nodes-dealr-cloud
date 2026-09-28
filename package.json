@@ -1,0 +1,71 @@
+{
+  "name": "@dealr/n8n-nodes-dealr-cloud",
+  "version": "0.2.1",
+  "description": "n8n nodes for dealr.cloud by Dealr, the all-in-one dealership operating system. Trigger workflows on vehicle, lead and repair order events; look up records; add notes.",
+  "license": "MIT",
+  "author": {
+    "name": "Dealr, Inc.",
+    "email": "support@dealr.cloud",
+    "url": "https://dealr.com"
+  },
+  "homepage": "https://dealr.cloud",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dealrinc/n8n-nodes-dealr-cloud.git"
+  },
+  "bugs": {
+    "email": "support@dealr.cloud"
+  },
+  "keywords": [
+    "n8n-community-node-package",
+    "n8n",
+    "dealr",
+    "dealr.cloud",
+    "dealership",
+    "car dealer",
+    "auto dealer",
+    "used car",
+    "automotive",
+    "dms",
+    "dealer management system",
+    "dealer crm",
+    "inventory",
+    "leads",
+    "repair orders"
+  ],
+  "main": "index.js",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "n8n-node build",
+    "lint": "n8n-node lint",
+    "lint:fix": "n8n-node lint --fix",
+    "prepublishOnly": "npm run lint && npm run build"
+  },
+  "n8n": {
+    "n8nNodesApiVersion": 1,
+    "strict": true,
+    "credentials": [
+      "dist/credentials/DealrOAuth2Api.credentials.js",
+      "dist/credentials/DealrApi.credentials.js"
+    ],
+    "nodes": [
+      "dist/nodes/Dealr/Dealr.node.js",
+      "dist/nodes/DealrTrigger/DealrTrigger.node.js"
+    ]
+  },
+  "devDependencies": {
+    "@n8n/node-cli": "^0.49.1",
+    "@types/node": "^22.20.3",
+    "eslint": "^9.29.0",
+    "n8n-workflow": "2.16.0",
+    "typescript": "^5.9.3"
+  },
+  "peerDependencies": {
+    "n8n-workflow": "*"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

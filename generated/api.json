@@ -1,0 +1,13 @@
+{
+  "generated": "Generated from the Dealr public API. Do not edit by hand.",
+  "apiVersion": "2026-09-15",
+  "baseUrl": "https://api.dealr.com",
+  "basePath": "/unstable",
+  "oauth": {
+    "clientId": "dealr-n8n",
+    "authUrl": "https://manage.dealr.cloud/oauth/authorize",
+    "accessTokenUrl": "https://manage.dealr.cloud/api/oauth/token",
+    "scope": "dealr-api",
+    "authQueryParameters": "resource=https%3A%2F%2Fmanage.dealr.cloud%2Funstable"
+  }
+}
