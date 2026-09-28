@@ -1,0 +1,54 @@
+name: Publish to npm
+
+# Publishes @dealr/n8n-nodes-dealr-cloud to npm with provenance when a
+# v<version> tag is pushed. Dealr's release automation commits each version
+# and pushes its tag. A version held for review sets publishConfig.tag "next".
+on:
+  push:
+    tags: ['v*']
+
+permissions:
+  contents: read
+
+concurrency:
+  group: publish
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: read
+      # npm trusted publishing: the job's OIDC token is the npm credential.
+      id-token: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          # Trusted publishing needs Node 22.14.0 or later and the npm registry named here.
+          node-version: '22'
+          registry-url: 'https://registry.npmjs.org'
+
+      - name: Check the tag matches the package
+        run: |
+          version="$(node -p "require('./package.json').version")"
+          if [ "v$version" != "$GITHUB_REF_NAME" ]; then
+            echo "::error::Tag $GITHUB_REF_NAME does not match package.json version $version."
+            exit 1
+          fi
+
+      - name: Install dependencies
+        run: |
+          # Trusted publishing needs npm 11.5.1 or later; Node 22 ships npm 10.
+          npm install -g npm@^11.5.1 --no-audit --no-fund
+          npm ci --no-audit --no-fund
+
+      # prepublishOnly lints and builds the package first.
+      - name: Publish
+        run: npm publish --provenance
