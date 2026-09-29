@@ -5,7 +5,7 @@
   "basePath": "/unstable",
   "oauth": {
     "clientId": "dealr-n8n",
-    "authUrl": "https://manage.dealr.cloud/oauth/authorize",
+    "authUrl": "https://manage.dealr.cloud/api/oauth/authorize",
     "accessTokenUrl": "https://manage.dealr.cloud/api/oauth/token",
     "scope": "dealr-api",
     "authQueryParameters": "resource=https%3A%2F%2Fmanage.dealr.cloud%2Funstable"

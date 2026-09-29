@@ -1,6 +1,6 @@
 {
   "name": "@dealr/n8n-nodes-dealr-cloud",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "n8n nodes for dealr.cloud by Dealr, the all-in-one dealership operating system. Trigger workflows on vehicle, lead and repair order events; look up records; add notes.",
   "license": "MIT",
   "author": {
