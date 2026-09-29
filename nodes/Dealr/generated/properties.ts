@@ -255,20 +255,20 @@ export const properties: INodeProperties[] = [
                 type: "options",
                 options: [
                     {
-                        name: "Lead",
-                        value: "lead",
-                    },
-                    {
-                        name: "Repair Order",
-                        value: "repair_order",
-                    },
-                    {
                         name: "Deal",
                         value: "deal",
                     },
                     {
+                        name: "Lead",
+                        value: "lead",
+                    },
+                    {
                         name: "Loan",
                         value: "loan",
+                    },
+                    {
+                        name: "Repair Order",
+                        value: "repair_order",
                     },
                 ],
                 default: "lead",
@@ -286,20 +286,20 @@ export const properties: INodeProperties[] = [
                 type: "options",
                 options: [
                     {
-                        name: "Phone",
-                        value: "phone",
+                        name: "Chat",
+                        value: "chat",
                     },
                     {
                         name: "Email",
                         value: "email",
                     },
                     {
-                        name: "Chat",
-                        value: "chat",
-                    },
-                    {
                         name: "Facebook",
                         value: "facebook",
+                    },
+                    {
+                        name: "Phone",
+                        value: "phone",
                     },
                 ],
                 default: "phone",
@@ -1134,8 +1134,8 @@ export const properties: INodeProperties[] = [
                         value: "active",
                     },
                     {
-                        name: "Sold",
-                        value: "sold",
+                        name: "Ghost",
+                        value: "ghost",
                     },
                     {
                         name: "Lost",
@@ -1144,6 +1144,10 @@ export const properties: INodeProperties[] = [
                     {
                         name: "Needs Attention",
                         value: "needs_attention",
+                    },
+                    {
+                        name: "Sold",
+                        value: "sold",
                     },
                 ],
                 default: "active",
@@ -1161,16 +1165,16 @@ export const properties: INodeProperties[] = [
                 type: "options",
                 options: [
                     {
+                        name: "Cold",
+                        value: "cold",
+                    },
+                    {
                         name: "Hot",
                         value: "hot",
                     },
                     {
                         name: "Warm",
                         value: "warm",
-                    },
-                    {
-                        name: "Cold",
-                        value: "cold",
                     },
                 ],
                 default: "hot",
@@ -1202,16 +1206,16 @@ export const properties: INodeProperties[] = [
                 type: "options",
                 options: [
                     {
-                        name: "90d",
-                        value: "90d",
-                    },
-                    {
                         name: "180d",
                         value: "180d",
                     },
                     {
                         name: "365d",
                         value: "365d",
+                    },
+                    {
+                        name: "90d",
+                        value: "90d",
                     },
                 ],
                 default: "90d",
@@ -1303,7 +1307,7 @@ export const properties: INodeProperties[] = [
         required: true,
         default: "",
         placeholder: "e.g. Called and left a voicemail about the Saturday appointment.",
-        description: "What the comment should say, up to 5,000 characters. It appears on the lead's timeline.",
+        description: "What the comment should say, up to 10,000 characters. It appears on the lead's timeline.",
         displayOptions: {
             show: {
                 resource: [
@@ -1382,7 +1386,7 @@ export const properties: INodeProperties[] = [
         required: true,
         default: "",
         placeholder: "e.g. Bumper cover back-ordered until the 22nd.",
-        description: "The note to keep on this flag, up to 2,000 characters. Replaces the current note.",
+        description: "The note to keep on this flag, up to 2,000 characters. Replaces the current note. Only a flag that is turned on can carry a note.",
         displayOptions: {
             show: {
                 resource: [
@@ -1634,6 +1638,19 @@ export const properties: INodeProperties[] = [
         },
         options: [
             {
+                displayName: "Closed",
+                name: "closed",
+                type: "boolean",
+                default: false,
+                description: "Whether the repair order is closed: nothing left to collect, as the RO list's Open/Closed shows it",
+                routing: {
+                    send: {
+                        type: "query",
+                        property: "closed",
+                    },
+                },
+            },
+            {
                 displayName: "dealr.cloud ID",
                 name: "ids",
                 type: "string",
@@ -1675,38 +1692,25 @@ export const properties: INodeProperties[] = [
                 },
             },
             {
-                displayName: "Paid in Full",
-                name: "closed",
-                type: "boolean",
-                default: false,
-                description: "Whether the repair order has nothing left to collect",
-                routing: {
-                    send: {
-                        type: "query",
-                        property: "closed",
-                    },
-                },
-            },
-            {
                 displayName: "Record Type",
                 name: "type",
                 type: "options",
                 options: [
                     {
-                        name: "Repair Order",
-                        value: "repair_order",
-                    },
-                    {
-                        name: "Quote",
-                        value: "quote",
+                        name: "All",
+                        value: "all",
                     },
                     {
                         name: "Invoice",
                         value: "invoice",
                     },
                     {
-                        name: "All",
-                        value: "all",
+                        name: "Quote",
+                        value: "quote",
+                    },
+                    {
+                        name: "Repair Order",
+                        value: "repair_order",
                     },
                 ],
                 default: "repair_order",
@@ -1723,7 +1727,7 @@ export const properties: INodeProperties[] = [
                 name: "number",
                 type: "string",
                 default: "",
-                placeholder: "e.g. RO-104829",
+                placeholder: "e.g. 104829",
                 description: "The repair order or invoice number",
                 routing: {
                     send: {
@@ -1906,7 +1910,7 @@ export const properties: INodeProperties[] = [
         required: true,
         default: "",
         placeholder: "e.g. Bumper cover back-ordered until the 22nd.",
-        description: "The note to keep on this flag, up to 2,000 characters. Replaces the current note.",
+        description: "The note to keep on this flag, up to 2,000 characters. Replaces the current note. Only a flag that is turned on can carry a note.",
         displayOptions: {
             show: {
                 resource: [
@@ -2432,7 +2436,7 @@ export const properties: INodeProperties[] = [
         required: true,
         default: "",
         placeholder: "e.g. Bumper cover back-ordered until the 22nd.",
-        description: "The note to keep on this flag, up to 2,000 characters. Replaces the current note.",
+        description: "The note to keep on this flag, up to 2,000 characters. Replaces the current note. Only a flag that is turned on can carry a note.",
         displayOptions: {
             show: {
                 resource: [

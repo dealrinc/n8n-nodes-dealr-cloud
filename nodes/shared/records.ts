@@ -12,9 +12,18 @@ function valueAt(record: IDataObject, dotted: string): unknown {
     return current;
 }
 
-/** The named fields of a record, flattened: `pricing.asking` becomes `pricing_asking`. */
+/**
+ * The named fields of a record, flattened: `pricing.asking` becomes `pricing_asking`.
+ *
+ * A field the record does not carry stays out, as the API leaves it out: a
+ * withheld section (contact details the organization does not share, costs the
+ * user cannot see) is not the same as an empty value.
+ */
 export function simplifyRecord(record: IDataObject, fields: string[]): IDataObject {
-    return Object.fromEntries(fields.map((dotted) => [dotted.replace(/\./g, '_'), valueAt(record, dotted) ?? null])) as IDataObject;
+    const entries = fields
+        .map((dotted) => [dotted.replace(/\./g, '_'), valueAt(record, dotted)] as const)
+        .filter(([, value]) => value !== undefined);
+    return Object.fromEntries(entries) as IDataObject;
 }
 
 /** "{year} {make} {model} · {stock_number}" for one record, dropping the parts it has no value for. */
