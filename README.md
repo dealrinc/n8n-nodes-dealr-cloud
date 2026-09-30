@@ -19,8 +19,9 @@ This package connects dealr.cloud to n8n:
 
 - **API access** turned on for your dealership. The dealr.cloud API is in early access. Email Dealr
   at [support@dealr.cloud](mailto:support@dealr.cloud) to request it.
-- **A dealr.cloud user with Integrations → Developer access.** The nodes see and change only what
-  that user can in dealr.cloud.
+- **A dealr.cloud user with Integrations → External integrations (Zapier, n8n)** for the OAuth2
+  credential, or an organization key (which needs Integrations → Developer access) for the API
+  key credential. The nodes see and change only what that user can in dealr.cloud.
 
 ## Install
 
