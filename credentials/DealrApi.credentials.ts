@@ -12,7 +12,7 @@ export class DealrApi implements ICredentialType {
 
     displayName = 'dealr.cloud API';
 
-    documentationUrl = 'https://docs.dealr.cloud/api';
+    documentationUrl = 'https://dealr.cloud/docs/api';
 
     properties: INodeProperties[] = [
         {

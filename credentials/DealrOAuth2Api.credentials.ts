@@ -13,7 +13,7 @@ export class DealrOAuth2Api implements ICredentialType {
 
     displayName = 'dealr.cloud OAuth2 API';
 
-    documentationUrl = 'https://docs.dealr.cloud/api';
+    documentationUrl = 'https://dealr.cloud/docs/api';
 
     properties: INodeProperties[] = [
         { displayName: 'Grant Type', name: 'grantType', type: 'hidden', default: 'pkce' },

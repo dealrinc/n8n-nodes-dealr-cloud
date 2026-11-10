@@ -111,7 +111,7 @@ terms and settings apply.
 
 ## Documentation and support
 
-- API documentation: [docs.dealr.cloud/api](https://docs.dealr.cloud/api)
+- API documentation: [dealr.cloud/docs/api](https://dealr.cloud/docs/api)
 - Dealr support: [support@dealr.cloud](mailto:support@dealr.cloud) · 720.772.7706 · Monday to
   Friday, 8 AM to 5 PM Mountain Time
 
